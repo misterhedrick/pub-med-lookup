@@ -5,8 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LookupComponent } from './components/lookup/lookup.component';
 import { HttpClientModule } from '@angular/common/http';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { AdminComponent } from './components/admin/admin.component';
@@ -26,9 +24,7 @@ import { AuthComponent } from './components/auth/auth.component';
     AppRoutingModule,
     HttpClientModule,
     MaterialModule,
-    StoreModule.forRoot(),
-    EffectsModule.forRoot([]),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
