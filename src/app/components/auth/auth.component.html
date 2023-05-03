@@ -1,1 +1,28 @@
-<p>auth works!</p>
+<mat-card>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-card-header>
+      <mat-card-title>Login for Admin Access</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          placeholder="Username"
+          formControlName="username"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="password"
+          matInput
+          placeholder="Password"
+          formControlName="password"
+        />
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button type="submit" mat-fab extended color="primary">Login</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
