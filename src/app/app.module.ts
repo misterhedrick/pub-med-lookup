@@ -1,6 +1,5 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LookupComponent } from './components/lookup/lookup.component';
@@ -10,10 +9,12 @@ import { MaterialModule } from './material/material.module';
 import { AdminComponent } from './components/admin/admin.component';
 import { DetailsComponent } from './components/admin/details/details.component';
 import { AuthComponent } from './components/auth/auth.component';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from './components/nav/nav.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { NavComponent } from './components/nav/nav.component';
     AdminComponent,
     DetailsComponent,
     AuthComponent,
-    NavComponent
+    NavComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,10 +32,12 @@ import { NavComponent } from './components/nav/nav.component';
     MaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
