@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Folder } from 'src/app/models/folder';
-import { AdminService } from 'src/app/services/admin.service';
+import { AdminService } from 'src/app/components/admin/admin.service';
 
 @Component({
   selector: 'app-admin',

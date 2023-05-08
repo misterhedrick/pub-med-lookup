@@ -4,11 +4,22 @@ import { LookupComponent } from './components/lookup/lookup.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AuthGuard } from './components/auth/auth-guard';
+import { DetailsComponent } from './components/admin/details/details.component';
 
 const routes: Routes = [
   { path: '', component: LookupComponent },
   { path: 'auth', component: AuthComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [ AuthGuard ] },
+  { path: 'admin', canActivate: [ AuthGuard ],
+  children: [
+    {
+      path: '', 
+      component: AdminComponent
+    },
+    {
+      path: 'details', 
+      component: DetailsComponent
+    }
+  ], },
 ];
 
 @NgModule({

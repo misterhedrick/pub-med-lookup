@@ -10,7 +10,7 @@ import {
 } from '@firebase/firestore';
 
 import { Firestore, collectionData, docData } from '@angular/fire/firestore';
-import { Folder } from '../models/folder';
+import { Folder } from '../../models/folder';
 import { Observable } from 'rxjs';
 
 @Injectable({
