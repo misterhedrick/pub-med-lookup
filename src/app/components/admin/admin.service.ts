@@ -14,13 +14,20 @@ import { Folder } from '../../models/folder';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdminService {
   private folderCollection: CollectionReference<DocumentData>;
+  private folder: string = '';
 
-  constructor(private readonly firestore: Firestore) { 
+  constructor(private readonly firestore: Firestore) {
     this.folderCollection = collection(this.firestore, 'folders');
+  }
+  getFolder() {
+    return this.folder;
+  }
+  setFolder(folder: string) {
+    this.folder = folder;
   }
   getAll() {
     return collectionData(this.folderCollection, {

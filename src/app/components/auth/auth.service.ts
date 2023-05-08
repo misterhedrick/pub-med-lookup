@@ -11,7 +11,7 @@ import { ILogin } from 'src/app/models/login';
 export class AuthService {
   private readonly userDisposable: Subscription|undefined;
   public readonly user: Observable<User | null> = EMPTY;
-
+  loggedInUser: any;
   isLoggedIn = false;
   showLoginButton = false;
   showLogoutButton = false;
@@ -27,6 +27,9 @@ export class AuthService {
         this.showLogoutButton = isLoggedIn;
         this.isLoggedIn = true;
       });
+      this.user.subscribe((data) => {
+        this.loggedInUser = data;
+      })
     }
   }
 

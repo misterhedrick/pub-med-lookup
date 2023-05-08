@@ -1,21 +1,21 @@
 <mat-card>
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <mat-card-header>
-        <mat-card-title>Add Folder</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-form-field>
-          <input
-            type="text"
-            matInput
-            placeholder="Name"
-            formControlName="name"
-          />
-        </mat-form-field>
-      </mat-card-content>
-      <mat-card-actions>
-        <button type="submit" mat-fab extended color="primary">Add Folder</button>
-      </mat-card-actions>
-    </form>
-  </mat-card>
-  <button routerLink="details" mat-fab extended color="primary">Details</button>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-card-header>
+      <mat-card-title>Add Folder</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Name" formControlName="name" />
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button type="submit" mat-fab extended color="primary">Add Folder</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
+<mat-card routerLink="details" *ngFor="let folder of folders" (click)="adminService.setFolder(folder.name)">
+  <mat-card-header>
+    <mat-card-title>{{ folder.name }}</mat-card-title>
+  </mat-card-header>
+</mat-card>
+<button routerLink="details" mat-fab extended color="primary">Details</button>

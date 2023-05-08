@@ -14,7 +14,7 @@ export class AdminComponent {
     name: new FormControl('', Validators.required)
   });
 
-  constructor(private adminService: AdminService) {
+  constructor(public adminService: AdminService) {
     this.adminService.getAll().subscribe((data) => {
       console.log(data);
       this.folders = data;
