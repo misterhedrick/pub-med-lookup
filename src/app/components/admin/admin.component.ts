@@ -9,22 +9,21 @@ import { AdminService } from 'src/app/components/admin/admin.service';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
-  folders: Folder[] = [];
   form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required)
   });
 
   constructor(public adminService: AdminService) {
-    this.adminService.getAll().subscribe((data) => {
+    this.adminService.getAllFolders().subscribe((data) => {
       console.log(data);
-      this.folders = data;
+      this.adminService.folders = data;
     });
   }
 
   submit() {
     console.log('name: ', this.name);
-    const tempFolder: Folder = {name: this.name};
-    this.adminService.create(tempFolder);
+    const tempFolder: Folder = {name: this.name, files: [] };
+    this.adminService.createFolder(tempFolder);
   }
 
   get name() {

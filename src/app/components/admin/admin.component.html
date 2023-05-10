@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="tile">
   <form [formGroup]="form" (ngSubmit)="submit()">
     <mat-card-header>
       <mat-card-title>Add Folder</mat-card-title>
@@ -13,9 +13,8 @@
     </mat-card-actions>
   </form>
 </mat-card>
-<mat-card routerLink="details" *ngFor="let folder of folders" (click)="adminService.setFolder(folder.name)">
+<mat-card class="tile" routerLink="details" *ngFor="let folder of adminService.folders" (click)="adminService.setFolder(folder.name)">
   <mat-card-header>
     <mat-card-title>{{ folder.name }}</mat-card-title>
   </mat-card-header>
 </mat-card>
-<button routerLink="details" mat-fab extended color="primary">Details</button>

@@ -18,42 +18,41 @@ import { Observable } from 'rxjs';
 })
 export class AdminService {
   private folderCollection: CollectionReference<DocumentData>;
-  private folder: string = '';
-
+  folder: string = '';
+  folders: Folder[] = [];
   constructor(private readonly firestore: Firestore) {
     this.folderCollection = collection(this.firestore, 'folders');
   }
-  getFolder() {
-    return this.folder;
-  }
+
   setFolder(folder: string) {
     this.folder = folder;
   }
-  getAll() {
+
+  getAllFolders() {
     return collectionData(this.folderCollection, {
       idField: 'id',
     }) as Observable<Folder[]>;
   }
 
-  get(id: string) {
-    const folderDocumentReference = doc(this.firestore, `folder/${id}`);
+  getFolder(id: string) {
+    const folderDocumentReference = doc(this.firestore, `folders/${id}`);
     return docData(folderDocumentReference, { idField: 'id' });
   }
 
-  create(folder: Folder) {
+  createFolder(folder: Folder) {
     return addDoc(this.folderCollection, folder);
   }
 
-  update(folder: Folder) {
+  updateFolder(folder: Folder) {
     const folderDocumentReference = doc(
       this.firestore,
-      `folder/${folder.name}`
+      `folders/${folder.name}`
     );
     return updateDoc(folderDocumentReference, { ...folder });
   }
 
-  delete(id: string) {
-    const folderDocumentReference = doc(this.firestore, `folder/${id}`);
+  deleteFolder(id: string) {
+    const folderDocumentReference = doc(this.firestore, `folders/${id}`);
     return deleteDoc(folderDocumentReference);
   }
 }

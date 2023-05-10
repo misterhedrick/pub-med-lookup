@@ -1,5 +1,5 @@
-import { Component, Input, inject } from '@angular/core';
-import { Storage, ref, uploadBytesResumable } from '@angular/fire/storage';
+import { Component, inject } from '@angular/core';
+import { Storage, ref, uploadBytesResumable, getDownloadURL } from '@angular/fire/storage';
 import { AdminService } from '../admin.service';
 import { AuthService } from '../../auth/auth.service';
 
@@ -21,9 +21,14 @@ export class DetailsComponent {
     for (let i = 0; i < files.length; i++) {
         const file = files.item(i);
         if (file) {
-            const storageRef = ref(this.storage, `${this.authService.loggedInUser.uid}/${this.adminService.getFolder()}/${file.name}`);
-            uploadBytesResumable(storageRef, file);
+            const storageRef = ref(this.storage, `${this.authService.loggedInUser.uid}/${this.adminService.folder}/${file.name}`);
+            uploadBytesResumable(storageRef, file).then((response) => {
+              console.log(response);
+              console.log('file: ', file);
+              const downloadURL = getDownloadURL(response.ref);
+              
+            });
         }
     }
-}
+} 
 }
