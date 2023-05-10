@@ -13,7 +13,7 @@
     </mat-card-actions>
   </form>
 </mat-card>
-<mat-card class="tile" routerLink="details" *ngFor="let folder of adminService.folders" (click)="adminService.setFolder(folder.name)">
+<mat-card class="tile" routerLink="details" *ngFor="let folder of adminService.folders" (click)="adminService.setFolder(folder)">
   <mat-card-header>
     <mat-card-title>{{ folder.name }}</mat-card-title>
   </mat-card-header>

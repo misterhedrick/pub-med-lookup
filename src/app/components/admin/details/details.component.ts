@@ -21,12 +21,11 @@ export class DetailsComponent {
     for (let i = 0; i < files.length; i++) {
         const file = files.item(i);
         if (file) {
-            const storageRef = ref(this.storage, `${this.authService.loggedInUser.uid}/${this.adminService.folder}/${file.name}`);
+            const storageRef = ref(this.storage, `${this.authService.loggedInUser.uid}/${this.adminService.folder.name}/${file.name}`);
             uploadBytesResumable(storageRef, file).then((response) => {
-              console.log(response);
-              console.log('file: ', file);
               const downloadURL = getDownloadURL(response.ref);
-              
+              this.adminService.folder.files.push({filename: response.metadata.name, fullpath: response.metadata.fullPath, thumbnail: ''});
+              console.log(this.adminService.folder);
             });
         }
     }

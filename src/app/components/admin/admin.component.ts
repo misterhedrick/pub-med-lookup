@@ -22,7 +22,7 @@ export class AdminComponent {
 
   submit() {
     console.log('name: ', this.name);
-    const tempFolder: Folder = {name: this.name, files: [] };
+    const tempFolder: Folder = {name: this.name, id: this.name, files: [] };
     this.adminService.createFolder(tempFolder);
   }
 

@@ -18,13 +18,13 @@ import { Observable } from 'rxjs';
 })
 export class AdminService {
   private folderCollection: CollectionReference<DocumentData>;
-  folder: string = '';
+  folder: Folder;
   folders: Folder[] = [];
   constructor(private readonly firestore: Firestore) {
     this.folderCollection = collection(this.firestore, 'folders');
   }
 
-  setFolder(folder: string) {
+  setFolder(folder: Folder) {
     this.folder = folder;
   }
 
