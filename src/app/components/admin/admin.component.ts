@@ -15,13 +15,11 @@ export class AdminComponent {
 
   constructor(public adminService: AdminService) {
     this.adminService.getAllFolders().subscribe((data) => {
-      console.log(data);
       this.adminService.folders = data;
     });
   }
 
   submit() {
-    console.log('name: ', this.name);
     const tempFolder: Folder = {name: this.name, id: this.name, files: [] };
     this.adminService.createFolder(tempFolder);
   }

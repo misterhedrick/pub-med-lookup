@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/components/auth/auth.service';
+import { AdminService } from '../admin/admin.service';
 
 @Component({
   selector: 'app-auth',
@@ -14,12 +15,11 @@ export class AuthComponent {
     password: new FormControl('password123@', Validators.required),
   });
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private adminService: AdminService, private router: Router) {}
 
   submit() {
-    console.log('email: ', this.email?.value, ' password: ', this.password?.value);
     this.authService.login(this.email?.value, this.password?.value).then((response) => {
-      console.log('login response: ', response);
+      this.adminService.setFolderCollection(response.user.uid);
       this.router.navigate(['/admin']);
     });
   }

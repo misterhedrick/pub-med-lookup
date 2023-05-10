@@ -25,7 +25,7 @@ export class DetailsComponent {
             uploadBytesResumable(storageRef, file).then((response) => {
               const downloadURL = getDownloadURL(response.ref);
               this.adminService.folder.files.push({filename: response.metadata.name, fullpath: response.metadata.fullPath, thumbnail: ''});
-              console.log(this.adminService.folder);
+              this.adminService.updateFolder(this.authService.loggedInUser.uid, this.adminService.folder);
             });
         }
     }

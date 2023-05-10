@@ -20,8 +20,10 @@ export class AdminService {
   private folderCollection: CollectionReference<DocumentData>;
   folder: Folder;
   folders: Folder[] = [];
-  constructor(private readonly firestore: Firestore) {
-    this.folderCollection = collection(this.firestore, 'folders');
+  constructor(private readonly firestore: Firestore) {}
+
+  setFolderCollection(uid: string) {
+    this.folderCollection = collection(this.firestore, uid);
   }
 
   setFolder(folder: Folder) {
@@ -43,10 +45,10 @@ export class AdminService {
     return addDoc(this.folderCollection, folder);
   }
 
-  updateFolder(folder: Folder) {
+  updateFolder(uid: string, folder: Folder) {
     const folderDocumentReference = doc(
       this.firestore,
-      `folders/${folder.name}`
+      `${uid}/${folder.id}`
     );
     return updateDoc(folderDocumentReference, { ...folder });
   }
