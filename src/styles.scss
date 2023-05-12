@@ -8,6 +8,12 @@ body {
     color: #ffffff;
 }
 
+.title {
+    text-align: center;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
 mat-toolbar {
     justify-content: center;
     margin-bottom: 1em !important;
@@ -21,9 +27,6 @@ mat-card-header {
     justify-content: center;
     padding: 16px !important;
 }
-mat-card-title {
-    color: #ffffff;
-}
 form mat-card-content {
     display: flex !important;
     flex-direction: column;
@@ -32,11 +35,13 @@ form mat-card-content {
 mat-card-actions {
     justify-content: center;
 }
-
+.tiles_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
 .tile {
     height: 30vw;
     width: 30vw;
-    margin: 1rem;
-    flex-direction: row;
-    flex-wrap: wrap;
+    margin: 1rem 0;
 }

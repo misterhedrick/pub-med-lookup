@@ -1,4 +1,19 @@
-<h1>{{ adminService.folder.name }}</h1>
-<label for="fileUpload">Choose a File</label>
-<input id="fileUpload" type="file" #upload />
-<button (click)="uploadFile(upload)">Upload</button>
+<h1 class="title">{{ adminService.folder.name }}</h1>
+
+<div class="tiles_container">
+  <mat-card class="tile">
+    <mat-card-header>
+      <mat-card-title>Add</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <label for="fileUpload">Choose a File</label>
+      <input id="fileUpload" type="file" #upload />
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="uploadFile(upload)" mat-fab extended color="primary">
+        Upload
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <img *ngFor="let file of images" class="tile" [src]="file | async" alt="" />
+</div>
