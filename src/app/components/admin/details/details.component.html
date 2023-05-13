@@ -6,8 +6,19 @@
       <mat-card-title>Add</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <label for="fileUpload">Choose a File</label>
       <input id="fileUpload" type="file" #upload />
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="uploadFile(upload)" mat-fab extended color="primary">
+        Upload
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card (click)="openDialog()" class="tile">
+    <mat-card-header>
+      <mat-card-title>Send</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
     </mat-card-content>
     <mat-card-actions>
       <button (click)="uploadFile(upload)" mat-fab extended color="primary">
