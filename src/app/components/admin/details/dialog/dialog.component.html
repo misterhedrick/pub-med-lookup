@@ -1,15 +1,15 @@
-<h1 mat-dialog-title>Favorite Animal</h1>
+<h1 mat-dialog-title>TODO</h1>
 <div mat-dialog-content>
-  My favorite animal is:
-  <ul>
-    <li>
-      <span *ngIf="data.animal === 'panda'">&#10003;</span> Panda
-    </li>
-    <li>
-      <span *ngIf="data.animal === 'unicorn'">&#10003;</span> Unicorn
-    </li>
-    <li>
-      <span *ngIf="data.animal === 'lion'">&#10003;</span> Lion
-    </li>
-  </ul>
+  <div *ngIf="data.action === 'send'">
+    <input id="fileUpload" type="file" #upload />
+    <button (click)="uploadFile(upload)" mat-fab extended color="primary">
+      Send
+    </button>
+  </div>
+  <div *ngIf="data.action === 'upload'">
+    <input id="fileUpload" type="file" #upload />
+    <button (click)="uploadFile(upload)" mat-fab extended color="primary">
+      Upload
+    </button>
+  </div>
 </div>

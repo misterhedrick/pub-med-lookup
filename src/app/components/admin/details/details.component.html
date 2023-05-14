@@ -1,30 +1,15 @@
 <h1 class="title">{{ adminService.folder.name }}</h1>
 
 <div class="tiles_container">
-  <mat-card class="tile">
+  <mat-card (click)="openDialog('upload')" class="tile">
     <mat-card-header>
-      <mat-card-title>Add</mat-card-title>
+      <mat-card-title>Upload</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
-      <input id="fileUpload" type="file" #upload />
-    </mat-card-content>
-    <mat-card-actions>
-      <button (click)="uploadFile(upload)" mat-fab extended color="primary">
-        Upload
-      </button>
-    </mat-card-actions>
   </mat-card>
-  <mat-card (click)="openDialog()" class="tile">
+  <mat-card (click)="openDialog('send')" class="tile">
     <mat-card-header>
       <mat-card-title>Send</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
-    </mat-card-content>
-    <mat-card-actions>
-      <button (click)="uploadFile(upload)" mat-fab extended color="primary">
-        Upload
-      </button>
-    </mat-card-actions>
   </mat-card>
-  <img *ngFor="let file of images" class="tile" [src]="file | async" alt="" />
+  <img *ngFor="let file of adminService.images" class="tile" [src]="file | async" alt="" />
 </div>

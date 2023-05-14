@@ -1,3 +1,3 @@
 export interface DetailsDialogData {
-    animal: 'panda' | 'unicorn' | 'lion';
+    action: 'send' | 'upload';
   }

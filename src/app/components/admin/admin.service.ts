@@ -28,6 +28,7 @@ export class AdminService {
   storageRef: StorageReference;
   folder: Folder;
   folders: Folder[] = [];
+  images: any[] = [];
   constructor(private readonly firestore: Firestore) {
     this.storageRef = ref(getStorage());
   }
@@ -37,7 +38,9 @@ export class AdminService {
   }
 
   setFolder(folder: Folder) {
+    this.images = [];
     this.folder = folder;
+    this.getImages();
   }
 
   getAllFolders() {
@@ -79,5 +82,11 @@ export class AdminService {
   }
   getImageRef(filepath: string) {
     return ref(this.storageRef, filepath);
+  }
+
+  getImages() {
+    for (var file of this.folder.files) {
+      this.images.push(this.getImageURL(file.fullpath));
+    }
   }
 }
