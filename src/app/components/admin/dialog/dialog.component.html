@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>TODO</h1>
+<div mat-dialog-content>
+  <div *ngIf="data.action === 'send'">
+    <input id="fileUpload" type="file" #file />
+    <button (click)="uploadFile(file)" mat-fab extended color="primary">
+      Send
+    </button>
+  </div>
+  <div *ngIf="data.action === 'upload'">
+    <input id="fileUpload" type="file" #file />
+    <button (click)="uploadFile(file)" mat-fab extended color="primary">
+      Upload
+    </button>
+  </div>
+</div>

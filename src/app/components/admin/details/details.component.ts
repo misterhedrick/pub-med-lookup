@@ -1,14 +1,7 @@
-import { Component, Inject, inject } from '@angular/core';
-import {
-  Storage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from '@angular/fire/storage';
+import { Component } from '@angular/core';
 import { AdminService } from '../admin.service';
-import { AuthService } from '../../auth/auth.service';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from './dialog/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-details',
@@ -16,11 +9,9 @@ import { DialogComponent } from './dialog/dialog.component';
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent {
-  private readonly storage: Storage = inject(Storage);
-  
+
   constructor(
     public adminService: AdminService,
-    private authService: AuthService,
     public dialog: MatDialog
   ) {}
 

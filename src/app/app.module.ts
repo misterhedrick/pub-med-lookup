@@ -24,7 +24,7 @@ import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage,getStorage } from '@angular/fire/storage';
-import { DialogComponent } from './components/admin/details/dialog/dialog.component';
+import { DialogComponent } from './components/admin/dialog/dialog.component';
 
 
 @NgModule({

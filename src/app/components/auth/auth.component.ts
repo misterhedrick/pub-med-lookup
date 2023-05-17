@@ -11,8 +11,8 @@ import { AdminService } from '../admin/admin.service';
 })
 export class AuthComponent {
   form: FormGroup = new FormGroup({
-    email: new FormControl('user@gmail.com', Validators.required),
-    password: new FormControl('password123@', Validators.required),
+    email: new FormControl('misterhedrick@gmail.com', Validators.required),
+    password: new FormControl('22vwOdS&r234', Validators.required),
   });
 
   constructor(private authService: AuthService, private adminService: AdminService, private router: Router) {}

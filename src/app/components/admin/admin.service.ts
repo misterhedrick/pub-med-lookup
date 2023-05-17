@@ -49,7 +49,7 @@ export class AdminService {
     }) as Observable<Folder[]>;
   }
 
-  getFolder(id: string) {
+  getFolder(uid: string, id: string) {
     const folderDocumentReference = doc(this.firestore, `folders/${id}`);
     return docData(folderDocumentReference, { idField: 'id' });
   }

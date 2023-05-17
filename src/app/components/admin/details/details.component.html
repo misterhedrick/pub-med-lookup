@@ -6,10 +6,5 @@
       <mat-card-title>Upload</mat-card-title>
     </mat-card-header>
   </mat-card>
-  <mat-card (click)="openDialog('send')" class="tile">
-    <mat-card-header>
-      <mat-card-title>Send</mat-card-title>
-    </mat-card-header>
-  </mat-card>
   <img *ngFor="let file of adminService.images" class="tile" [src]="file | async" alt="" />
 </div>
