@@ -50,7 +50,7 @@ export class AdminService {
   }
 
   getFolder(uid: string, id: string) {
-    const folderDocumentReference = doc(this.firestore, `folders/${id}`);
+    const folderDocumentReference = doc(this.firestore, `${uid}/${id}`);
     return docData(folderDocumentReference, { idField: 'id' });
   }
 

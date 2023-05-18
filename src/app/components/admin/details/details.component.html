@@ -1,7 +1,7 @@
 <h1 class="title">{{ adminService.folder.name }}</h1>
 
 <div class="tiles_container">
-  <mat-card (click)="openDialog('upload')" class="tile">
+  <mat-card *ngIf="adminService.folder.name !== 'inbox'" (click)="openDialog('upload')" class="tile">
     <mat-card-header>
       <mat-card-title>Upload</mat-card-title>
     </mat-card-header>

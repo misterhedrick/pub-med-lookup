@@ -14,7 +14,7 @@ import { Folder } from 'src/app/models/folder';
 export class DialogComponent {
   private readonly storage: Storage = inject(Storage);
   uid = '';
-  folder: Folder = { name: '', id: '', files: [] };
+  folder: Folder;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DetailsDialogData,
     public adminService: AdminService,
@@ -25,38 +25,49 @@ export class DialogComponent {
   }
 
   uploadFile(input: HTMLInputElement) {
-    if (this.data.action === 'send') {
-      this.authService.loggedInUser.uid === 'Xpp2ao4Rf9bTo38vAwGFzVNIZHK2'
-        ? (this.uid = 'jbn4I3C7uMcZQa9RXvnt6j9iq082')
-        : (this.uid = 'Xpp2ao4Rf9bTo38vAwGFzVNIZHK2');
-      this.folder.name = 'inbox';
-    } else {
-      this.folder = this.adminService.folder;
-    }
     if (!input.files) return;
     const file: File = input.files[0];
     if (file) {
-      const storageRef = ref(
-        this.storage,
-        `${this.uid}/${this.folder.name}/${file.name}`
-      );
-      uploadBytesResumable(storageRef, file).then((response) => {
-        if (this.data.action === 'send') {
-          console.log('need to add to send inbox folder');
-        } else {
-          this.adminService.folder.files.push({
+      this.setUploadDetails().then(() => {
+        const storageRef = ref(
+          this.storage,
+          `${this.uid}/${this.folder.name}/${file.name}`
+        );
+        uploadBytesResumable(storageRef, file).then((response) => {
+          this.folder.files.push({
             filename: response.metadata.name,
             fullpath: response.metadata.fullPath,
             thumbnail: '',
           });
-          this.adminService.updateFolder(this.uid, this.adminService.folder);
-          this.adminService.images.push(
-            this.adminService.getImageURL(response.metadata.fullPath)
-          );
-        }
-
-        this.dialog.closeAll();
+          this.adminService.updateFolder(this.uid, this.folder);
+          if (this.data.action === 'upload') {
+            this.adminService.images.push(
+              this.adminService.getImageURL(response.metadata.fullPath)
+            );
+          }
+          this.dialog.closeAll();
+        });
       });
     }
+  }
+
+  setUploadDetails() {
+    return new Promise((resolve, reject) => {
+      if (this.data.action === 'send') {
+        this.authService.loggedInUser.uid === 'Xpp2ao4Rf9bTo38vAwGFzVNIZHK2'
+          ? (this.uid = 'jbn4I3C7uMcZQa9RXvnt6j9iq082')
+          : (this.uid = 'Xpp2ao4Rf9bTo38vAwGFzVNIZHK2');
+          console.log('uid: ', this.uid);
+        this.adminService.getFolder(this.uid, 'inbox').subscribe((data) => {
+          console.log('data: ', data);
+          this.folder = data as Folder;
+          console.log('folder: ', this.folder);
+          resolve(true);
+        });
+      } else {
+        this.folder = this.adminService.folder;
+        resolve(true);
+      }
+    });
   }
 }
