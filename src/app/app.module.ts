@@ -1,5 +1,5 @@
 import { NgModule, isDevMode } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LookupComponent } from './components/lookup/lookup.component';
@@ -25,6 +25,7 @@ import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { DialogComponent } from './components/admin/dialog/dialog.component';
+import { SwipeDetectDirective } from './directives/swipe-detect.directive';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { DialogComponent } from './components/admin/dialog/dialog.component';
     AuthComponent,
     NavComponent,
     DialogComponent,
+    SwipeDetectDirective
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,7 @@ import { DialogComponent } from './components/admin/dialog/dialog.component';
     MaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    HammerModule,
     StoreModule.forRoot(reducers, {
       metaReducers
     }),
