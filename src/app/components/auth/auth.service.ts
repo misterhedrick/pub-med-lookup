@@ -4,6 +4,9 @@ import { EMPTY, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { traceUntilFirst } from '@angular/fire/performance';
 import { ILogin } from 'src/app/models/login';
+import { Router } from '@angular/router';
+
+const SEQ = 'rllruu';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +18,10 @@ export class AuthService {
   isLoggedIn = false;
   showLoginButton = false;
   showLogoutButton = false;
+  enteredSeq = '';
+  canLogin = false;
   
-  constructor(private auth: Auth) { 
+  constructor(private auth: Auth, private router: Router) { 
     if (auth) {
       this.user = authState(this.auth);
       this.userDisposable = authState(this.auth).pipe(
@@ -30,6 +35,15 @@ export class AuthService {
       this.user.subscribe((data) => {
         this.loggedInUser = data;
       })
+    }
+  }
+
+  checkAuthSequence(char: string) {
+    this.enteredSeq = this.enteredSeq + char;
+    console.log('seq: ', this.enteredSeq);
+    if(this.enteredSeq === SEQ) {
+      this.canLogin = true;
+      this.router.navigate(['/auth']);
     }
   }
 

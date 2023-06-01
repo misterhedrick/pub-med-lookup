@@ -15,7 +15,12 @@ export class AuthComponent {
     password: new FormControl('22vwOdS&r234', Validators.required),
   });
 
-  constructor(private authService: AuthService, private adminService: AdminService, private router: Router) {}
+  constructor(private authService: AuthService, private adminService: AdminService, private router: Router) {
+    if(!this.authService.canLogin) {
+      this.authService.enteredSeq = '';
+      this.router.navigate(['']);
+    }
+  }
 
   submit() {
     this.authService.login(this.email?.value, this.password?.value).then((response) => {
