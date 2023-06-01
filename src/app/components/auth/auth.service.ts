@@ -6,7 +6,7 @@ import { traceUntilFirst } from '@angular/fire/performance';
 import { ILogin } from 'src/app/models/login';
 import { Router } from '@angular/router';
 
-const SEQ = 'rllruu';
+const SEQ = 'rllrlrlr';
 
 @Injectable({
   providedIn: 'root'
