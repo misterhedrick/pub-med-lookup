@@ -7,7 +7,7 @@ import { ILogin } from 'src/app/models/login';
 import { Router } from '@angular/router';
 
 const SEQ = 'rllrl';
-
+//const SEQ = 'r';
 @Injectable({
   providedIn: 'root'
 })
